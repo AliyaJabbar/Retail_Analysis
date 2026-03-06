@@ -1,0 +1,24 @@
+-- Check column names (may vary slightly)
+SELECT COLUMN_NAME, DATA_TYPE 
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'raw_transactions';
+
+-- Check nulls
+SELECT
+    COUNT(*) AS total_rows,
+    SUM(CASE WHEN Customer_ID IS NULL THEN 1 ELSE 0 END) AS null_customers,
+    SUM(CASE WHEN Quantity <= 0 THEN 1 ELSE 0 END) AS returns_or_bad,
+    SUM(CASE WHEN Price <= 0 THEN 1 ELSE 0 END) AS bad_price,
+    SUM(CASE WHEN StockCode IS NULL THEN 1 ELSE 0 END) AS null_stockcode
+FROM raw_transactions;
+
+-- Check cancelled orders (Invoice starts with C)
+SELECT COUNT(*) AS cancelled_orders
+FROM raw_transactions
+WHERE Invoice LIKE 'C%';
+
+-- Check junk StockCodes
+SELECT DISTINCT StockCode, Description, COUNT(*) as cnt
+FROM raw_transactions
+WHERE StockCode IN ('POST','DOT','M','BANK CHARGES','PADS','S','AMAZONFEE')
+GROUP BY StockCode, Description;
