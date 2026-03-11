@@ -7,6 +7,10 @@
 ![Status](https://img.shields.io/badge/Status-Complete-green?style=flat-square)
 
 ---
+![page1](https://github.com/AliyaJabbar/Retail_Analysis/blob/main/dashboard/page1.PNG)
+![2](https://github.com/AliyaJabbar/Retail_Analysis/blob/main/dashboard/page2.PNG)
+![clv](https://github.com/AliyaJabbar/Retail_Analysis/blob/main/dashboard/page3.PNG)
+![product intelligence](https://github.com/AliyaJabbar/Retail_Analysis/blob/main/dashboard/page3.PNG)
 
 ## 📌 Project Overview
 
