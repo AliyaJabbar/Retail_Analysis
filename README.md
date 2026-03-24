@@ -237,8 +237,8 @@ During RFM scoring, the initial NTILE ORDER BY logic was reversed — causing to
 
 If you found this project useful or have feedback, feel free to connect!
 
-- 💼 LinkedIn: [Your LinkedIn URL]
-- 📧 Email: [Your Email]
+
+- 📧 Email: aliyajabbar49@gmail.com
 
 **Open to Data Analyst opportunities in retail and e-commerce across India.**
 
