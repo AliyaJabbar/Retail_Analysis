@@ -7,10 +7,10 @@
 ![Status](https://img.shields.io/badge/Status-Complete-green?style=flat-square)
 
 ---
-![page1](https://github.com/AliyaJabbar/Retail_Analysis/blob/main/dashboard/page1.PNG)
-![2](https://github.com/AliyaJabbar/Retail_Analysis/blob/main/dashboard/page2.PNG)
-![clv](https://github.com/AliyaJabbar/Retail_Analysis/blob/main/dashboard/page3.PNG)
-![product intelligence](https://github.com/AliyaJabbar/Retail_Analysis/blob/main/dashboard/page4.PNG)
+![page1](https://github.com/AliyaJabbar/Retail_Analysis/blob/main/dashboard/retail360.PNG )
+![2](https://github.com/AliyaJabbar/Retail_Analysis/blob/main/dashboard/retailcustomer_Seg.PNG  )
+![clv](https://github.com/AliyaJabbar/Retail_Analysis/blob/main/dashboard/r360clv_analysis.PNG)
+![product intelligence](https://github.com/AliyaJabbar/Retail_Analysis/blob/main/dashboard/R360product_intelligence.PNG)
 
 ## 📌 Project Overview
 
