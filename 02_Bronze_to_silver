@@ -2,7 +2,46 @@
 SELECT COLUMN_NAME, DATA_TYPE 
 FROM INFORMATION_SCHEMA.COLUMNS
 WHERE TABLE_NAME = 'raw_transactions';
+--DATA PROFILING 
+SELECT
+    COUNT(*) AS total_rows,
+    COUNT(DISTINCT Invoice) AS unique_invoices,
+    COUNT(DISTINCT Customer_ID) AS unique_customers,
+    COUNT(DISTINCT StockCode) AS unique_products,
+    MIN(InvoiceDate) AS first_invoice_date,
+    MAX(InvoiceDate) AS last_invoice_date
+FROM dbo.online_retail_II;
+SELECT
+    COUNT(*) AS total_rows,
+    SUM(CASE WHEN Customer_ID IS NULL THEN 1 ELSE 0 END)
+        AS missing_customer_ids,
+    SUM(CASE WHEN Invoice LIKE 'C%' THEN 1 ELSE 0 END)
+        AS cancellation_rows,
+    SUM(CASE WHEN Quantity <= 0 THEN 1 ELSE 0 END)
+        AS non_positive_quantity_rows,
+    SUM(CASE WHEN Price <= 0 THEN 1 ELSE 0 END)
+        AS non_positive_price_rows
+FROM dbo.online_retail_II;
 
+SELECT
+    COUNT(*) AS total_rows,
+    SUM(CASE WHEN customer_id IS NULL THEN 1 ELSE 0 END)
+        AS missing_customer_ids,
+    SUM(CASE WHEN invoice_id LIKE 'C%' THEN 1 ELSE 0 END)
+        AS cancellation_rows,
+    SUM(CASE WHEN quantity <= 0 THEN 1 ELSE 0 END)
+        AS non_positive_quantity_rows,
+    SUM(CASE WHEN unit_price <= 0 THEN 1 ELSE 0 END)
+        AS non_positive_price_rows
+FROM dbo.silver_transactions;
+
+SELECT 'Bronze' AS data_layer, COUNT(*) AS total_rows
+FROM dbo.online_retail_II
+
+UNION ALL
+
+SELECT 'Silver', COUNT(*)
+FROM dbo.silver_transactions;
 -- Check nulls
 SELECT
     COUNT(*) AS total_rows,
