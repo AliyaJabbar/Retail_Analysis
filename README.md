@@ -98,6 +98,36 @@ retail-customer-analytics/
 ```
 
 ---
+## Data Cleaning & Quality Validation
+
+### Dataset Overview
+
+The raw Online Retail II dataset contained **1,067,371 rows**. Data profiling and validation were performed using SQL Server before preparing the Silver layer for customer and sales analytics.
+
+| Metric | Raw Dataset | Silver Dataset |
+|---|---:|---:|
+| Total rows | 1,067,371 | 802,937 |
+| Unique invoices | 53,628 | 36,650 |
+| Unique customers | 5,942 | 5,862 |
+| Unique stock codes | 5,131 | 4,626 |
+
+### Cleaning Rules
+
+The following rules were applied when creating the Silver table:
+
+- Excluded records without a Customer ID.
+- Excluded records with zero or negative quantities.
+- Excluded records with zero or negative prices.
+- Excluded cancellation invoices identified by the `C` prefix.
+- Excluded specified non-product StockCodes, including postage and fee-related codes.
+- Trimmed leading and trailing spaces from text fields.
+- Converted columns to appropriate data types and calculated transaction revenue as quantity multiplied by unit price.
+
+### Data Quality Validation
+
+After cleaning, the Silver table contained **802,937 rows**, with no missing Customer IDs, cancellation invoices, non-positive quantities, or non-positive unit prices found in the validation checks.
+
+The raw-to-Silver row-count difference was **264,434 rows**. This represents the number of rows not retained under the cleaning rules; it should not be interpreted as the number of invalid records without further business validation.
 
 ## 🧹 Data Cleaning (Bronze → Silver)
 
