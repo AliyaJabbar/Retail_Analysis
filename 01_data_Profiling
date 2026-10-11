@@ -1,0 +1,49 @@
+```sql
+-- 1. Check raw table columns and data types
+SELECT
+    COLUMN_NAME,
+    DATA_TYPE
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'online_retail_II';
+
+
+-- 2. Basic data profiling
+SELECT
+    COUNT(*) AS total_rows,
+    COUNT(DISTINCT Invoice) AS unique_invoices,
+    COUNT(DISTINCT Customer_ID) AS unique_customers,
+    COUNT(DISTINCT StockCode) AS unique_products,
+    MIN(InvoiceDate) AS first_invoice_date,
+    MAX(InvoiceDate) AS last_invoice_date
+FROM dbo.online_retail_II;
+
+
+-- 3. Raw data quality checks
+SELECT
+    COUNT(*) AS total_rows,
+    SUM(CASE WHEN Customer_ID IS NULL THEN 1 ELSE 0 END)
+        AS missing_customer_ids,
+    SUM(CASE WHEN Invoice LIKE 'C%' THEN 1 ELSE 0 END)
+        AS cancellation_rows,
+    SUM(CASE WHEN Quantity <= 0 THEN 1 ELSE 0 END)
+        AS non_positive_quantity_rows,
+    SUM(CASE WHEN Price <= 0 THEN 1 ELSE 0 END)
+        AS non_positive_price_rows,
+    SUM(CASE WHEN StockCode IS NULL THEN 1 ELSE 0 END)
+        AS missing_stock_codes
+FROM dbo.online_retail_II;
+
+
+-- 4. Inspect non-product StockCodes
+SELECT
+    StockCode,
+    Description,
+    COUNT(*) AS row_count
+FROM dbo.online_retail_II
+WHERE StockCode IN (
+    'POST', 'DOT', 'M', 'BANK CHARGES',
+    'PADS', 'S', 'AMAZONFEE', 'CRUK'
+)
+GROUP BY StockCode, Description
+ORDER BY row_count DESC;
+```
